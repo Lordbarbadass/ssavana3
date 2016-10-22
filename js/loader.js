@@ -12,4 +12,7 @@ $.getJSON("php/getAllScripts.php", function (data) {
 
  function handleComplete() {
      console.log("Loading complete");
+     game = new Game();
  }
+
+var game;
