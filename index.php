@@ -22,7 +22,7 @@
   <canvas height=600 width=800 id="ssavana">
     get a decent browser please.
   </canvas>
-  <img alt="Made with createjs" src="res/createjs-badge-dark.png" />
+  <a href="http://www.createjs.com" target="_blank" ><img alt="Made with createjs" src="res/createjs-badge-dark.png" /></a>
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://code.createjs.com/easeljs-0.8.2.min.js"></script>
