@@ -2,19 +2,13 @@ class Game {
 
   constructor ()  {
     this.stage = new createjs.Stage("ssavana");
-    this.fps = {
-      txt: new createjs.Text("0 FPS", "20px Verdana", "#000"),
+    this.fps = new createjs.Text("- FPS", "20px Verdana", "#000");
+
+    this.stage.addChild(this.fps.set({
+      x:10, y:10,
       frames: 0,
       delta: 0
-    };
-
-    this.stage.addChild(this.fps.txt.set({x:10, y:10}));
-
-    setTimeout(function (self) {
-      var thing = new createjs.Graphics().f("#777").dc(0,0,10);
-      var animal = new Animal(thing);
-      self.stage.addChild(animal.set({x:100, y:100}));
-    }, 10, this); // beurk
+    }));
 
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.framerate = 60;
@@ -24,9 +18,11 @@ class Game {
   update (e) {
     this.fps.frames ++;
     if ((this.fps.delta += e.delta) >= 1000) {
-      this.fps.txt.text = this.fps.frames + " FPS";
-      this.fps.delta = 0;
-      this.fps.frames = 0;
+      this.fps.set({
+        text: this.fps.frames + " FPS",
+        delta: 0,
+        frames: 0
+      });
     }
 
     this.stage.update();

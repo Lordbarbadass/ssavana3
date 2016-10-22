@@ -14,7 +14,7 @@ class Animal extends createjs.Shape {
   }
 
   destroy () {
-    game.removeChild(this);
+    game.stage.removeChild(this);
     createjs.Ticker.off(this.updateTicker);
   }
 
