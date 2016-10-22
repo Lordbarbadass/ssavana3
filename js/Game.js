@@ -10,6 +10,12 @@ class Game {
 
     this.stage.addChild(this.fps.txt.set({x:10, y:10}));
 
+    setTimeout(function (self) {
+      var thing = new createjs.Graphics().f("#777").dc(0,0,10);
+      var animal = new Animal(thing);
+      self.stage.addChild(animal.set({x:100, y:100}));
+    }, 10, this); // beurk
+
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
     createjs.Ticker.framerate = 60;
     createjs.Ticker.on("tick", this.update, this);

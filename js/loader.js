@@ -1,5 +1,6 @@
 var queue = new createjs.LoadQueue();
 queue.on("complete", handleComplete, this);
+queue.on("fileload", handleLoad, this);
 $.getJSON("php/getAllScripts.php", function (data) {
   var manifest = [];
   for (scrpt of data) {
@@ -10,9 +11,13 @@ $.getJSON("php/getAllScripts.php", function (data) {
   queue.loadManifest(manifest);
 });
 
- function handleComplete() {
-     console.log("Loading complete");
-     game = new Game();
- }
+function handleComplete() {
+  console.log("Loading complete");
+  game = new Game();
+}
+
+function handleLoad(e) {
+  console.log("Loaded : " + e.item.id);
+}
 
 var game;
