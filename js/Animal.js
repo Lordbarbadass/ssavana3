@@ -3,9 +3,9 @@ class Animal extends createjs.Shape {
   constructor (stage, graphics) {
     super(graphics);
     this.ssavana         = stage;
-    this.updateTicker    = stage.on("gameTick", this.update, this);
+    this.updateTicker    = stage.on("gameTick", this.update, this); // subscribe to the 20Hz ticking
 
-    this.ssavana.addChild(this);
+    this.ssavana.addChild(this); // display the animal
   }
 
   update (e) {
@@ -14,6 +14,7 @@ class Animal extends createjs.Shape {
   }
 
   destroy () {
+    // remove and unsubscribe from everything
     this.ssavana.removeChild(this);
     stage.off(this.updateTicker);
   }
