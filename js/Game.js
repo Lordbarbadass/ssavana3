@@ -3,6 +3,12 @@ class Game extends createjs.Stage {
   constructor (id)  {
     super(id);
     this.fps           = new createjs.Text("- FPS", "20px Verdana", "#000");
+    this.terrain       = {
+      width: this.canvas.width / 200,
+      height: this.canvas.height / 200,
+      unitSize: 200,
+      grid: []
+    };
     this.events        = { // events list
       "gameTick":{
         "event": new createjs.Event("gameTick"),
@@ -22,10 +28,19 @@ class Game extends createjs.Stage {
       delta: 0
     }));
 
+    for (var i=0; i<this.terrain.height; i++) {
+      this.terrain.grid.push([]);
+      for(var j=0; j<this.terrain.width; j++) {
+        this.terrain.grid[i].push(new Grass(this).set({
+          x: j * this.terrain.unitSize,
+          y: i * this.terrain.unitSize
+        }));
+      }
+    }
+
     var graph = new createjs.Graphics().f("#999").dc(0,0,10);
     var animal = new Animal(this, graph);
     animal.set({x:100, y:100});
-    var land = new SSavana(this, "ssavana", {grass:10}, {grass:0.02}, "beige");
 
     // initialise and subscribe to the clock
     createjs.Ticker.timingMode = createjs.Ticker.RAF_SYNCHED;
