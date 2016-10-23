@@ -13,7 +13,7 @@ $.getJSON("php/getAllScripts.php", function (data) {
 
 function handleComplete() {
   console.log("Loading complete");
-  game = new Game();
+  game = new Game("ssavana");
 }
 
 function handleLoad(e) {

@@ -1,11 +1,11 @@
 class Animal extends createjs.Shape {
 
-  constructor (graphics) {
+  constructor (stage, graphics) {
     super(graphics);
+    this.ssavana         = stage;
+    this.updateTicker    = stage.on("gameTick", this.update, this);
 
-    this.updateTicker    = createjs.Ticker.on("tick", this.update, this);
-
-    game.stage.addChild(this);
+    this.ssavana.addChild(this);
   }
 
   update (e) {
@@ -14,8 +14,8 @@ class Animal extends createjs.Shape {
   }
 
   destroy () {
-    game.stage.removeChild(this);
-    createjs.Ticker.off(this.updateTicker);
+    this.ssavana.removeChild(this);
+    stage.off(this.updateTicker);
   }
 
 }
